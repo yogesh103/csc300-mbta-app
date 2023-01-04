@@ -4,7 +4,7 @@ This MERN stack implementation creates a small web application that lets users r
 Configuration
 -------------
 Under users/server/create .env file that looks similar to this:
-DB_URL = mongodb+srv://admin:yourAdminPassword@cluster0.someuniqueid.mongodb.net/yourDatabaseName
+DB_URL = mongodb+srv://admin:<your admin password>@cluster<some  number>.<some unique id>.mongodb.net/<some database name>
 ACCESS_TOKEN_SECRET = xb3tim8rnIdoMMJfGNaqMxHX6zyWGBrR
 
 The DB_URL comes from signing up for an MongoDB Atlas account and creating a cluster.  Under database select the cluster (likely

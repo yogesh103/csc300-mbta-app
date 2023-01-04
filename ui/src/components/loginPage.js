@@ -131,7 +131,7 @@ const Login = () => {
                   style={buttonStyling}
                   className='mt-2'
                 >
-                  Submit
+                  Log In
                 </Button>
               </Form>
             </div>

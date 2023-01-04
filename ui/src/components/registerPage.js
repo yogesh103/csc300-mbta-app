@@ -103,17 +103,6 @@ const Register = () => {
                     onChange={handleChange}
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                  <Form.Text className="text-muted pt-1">
-                    Dont have an account?
-                    <span>
-                      <Link to="/signup" style={labelStyling}>
-                        {" "}
-                        Sign up
-                      </Link>
-                    </span>
-                  </Form.Text>
-                </Form.Group>
                 <div class="form-check form-switch">
                   <input
                     class="form-check-input"
@@ -144,7 +133,7 @@ const Register = () => {
                   style={buttonStyling}
                   className="mt-2"
                 >
-                  Submit
+                  Register
                 </Button>
               </Form>
             </div>

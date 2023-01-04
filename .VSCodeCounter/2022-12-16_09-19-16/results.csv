@@ -1,0 +1,16 @@
+"filename", "language", "JavaScript", "Markdown", "JSON", "HTTP", "comment", "blank", "total"
+"c:\Users\brock\source\repos\social\post\server\README.md", "Markdown", 0, 8, 0, 0, 0, 3, 11
+"c:\Users\brock\source\repos\social\post\server\config\db.config.js", "JavaScript", 15, 0, 0, 0, 0, 3, 18
+"c:\Users\brock\source\repos\social\post\server\models\postModel.js", "JavaScript", 16, 0, 0, 0, 1, 1, 18
+"c:\Users\brock\source\repos\social\post\server\package-lock.json", "JSON", 0, 0, 5694, 0, 0, 1, 5695
+"c:\Users\brock\source\repos\social\post\server\package.json", "JSON", 0, 0, 24, 0, 0, 1, 25
+"c:\Users\brock\source\repos\social\post\server\postTest.rest", "HTTP", 0, 0, 0, 22, 6, 12, 40
+"c:\Users\brock\source\repos\social\post\server\routes\post.createPost.js", "JavaScript", 15, 0, 0, 0, 0, 4, 19
+"c:\Users\brock\source\repos\social\post\server\routes\post.deletePost.js", "JavaScript", 10, 0, 0, 0, 0, 3, 13
+"c:\Users\brock\source\repos\social\post\server\routes\post.getAllByUsername.js", "JavaScript", 17, 0, 0, 0, 0, 4, 21
+"c:\Users\brock\source\repos\social\post\server\routes\post.getAllPosts.js", "JavaScript", 8, 0, 0, 0, 0, 3, 11
+"c:\Users\brock\source\repos\social\post\server\routes\post.getPostById.js", "JavaScript", 10, 0, 0, 0, 0, 4, 14
+"c:\Users\brock\source\repos\social\post\server\routes\post.updatePost.js", "JavaScript", 10, 0, 0, 0, 0, 3, 13
+"c:\Users\brock\source\repos\social\post\server\routes\post.uploadImages.js", "JavaScript", 58, 0, 0, 0, 9, 14, 81
+"c:\Users\brock\source\repos\social\post\server\server.js", "JavaScript", 26, 0, 0, 0, 0, 6, 32
+"Total", "-", 185, 8, 5718, 22, 16, 62, 6011

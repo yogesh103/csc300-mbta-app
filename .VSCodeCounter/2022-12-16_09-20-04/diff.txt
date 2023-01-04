@@ -1,0 +1,67 @@
+Date : 2022-12-16 09:20:04
+Directory : c:\Users\brock\source\repos\social\users
+Total : 27 files,  1234 codes, 0 comments, 15 blanks, all 1249 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          4 |      1,116 |          0 |          0 |      1,116 |
+| JavaScript |         18 |        121 |          1 |         14 |        136 |
+| HTTP       |          2 |         11 |         -1 |          7 |         17 |
+| Properties |          1 |          2 |          0 |          0 |          2 |
+| Markdown   |          2 |        -16 |          0 |         -6 |        -22 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                       | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                          |         27 |      1,234 |          0 |         15 |      1,249 |
+| ..                                                                         |          9 |     -4,386 |        -27 |        -66 |     -4,479 |
+| ..\statistics                                                              |          9 |     -4,386 |        -27 |        -66 |     -4,479 |
+| ..\statistics\server                                                       |          9 |     -4,386 |        -27 |        -66 |     -4,479 |
+| ..\statistics\server\db                                                    |          1 |        -14 |          0 |         -2 |        -16 |
+| ..\statistics\server\models                                                |          2 |        -28 |          0 |         -4 |        -32 |
+| ..\statistics\server\routes                                                |          1 |        -68 |        -20 |        -40 |       -128 |
+| server                                                                     |         18 |      5,620 |         27 |         81 |      5,728 |
+| server\config                                                              |          1 |         15 |          0 |          3 |         18 |
+| server\middleware                                                          |          1 |          0 |          0 |          1 |          1 |
+| server\models                                                              |          2 |         44 |          3 |          6 |         53 |
+| server\routes                                                              |          7 |        153 |         18 |         48 |        219 |
+| server\utilities                                                           |          1 |          9 |          0 |          2 |         11 |
++----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                   | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\brock\source\repos\social\statistics\server\README.md             | Markdown   |        -28 |          0 |         -8 |        -36 |
+| c:\Users\brock\source\repos\social\statistics\server\db\conn.js            | JavaScript |        -14 |          0 |         -2 |        -16 |
+| c:\Users\brock\source\repos\social\statistics\server\models\like.js        | JavaScript |        -16 |          0 |         -2 |        -18 |
+| c:\Users\brock\source\repos\social\statistics\server\models\view.js        | JavaScript |        -12 |          0 |         -2 |        -14 |
+| c:\Users\brock\source\repos\social\statistics\server\package-lock.json     | JSON       |     -4,188 |          0 |         -1 |     -4,189 |
+| c:\Users\brock\source\repos\social\statistics\server\package.json          | JSON       |        -24 |          0 |         -1 |        -25 |
+| c:\Users\brock\source\repos\social\statistics\server\routes\statistics.js  | JavaScript |        -68 |        -20 |        -40 |       -128 |
+| c:\Users\brock\source\repos\social\statistics\server\server.js             | JavaScript |        -14 |          0 |         -4 |        -18 |
+| c:\Users\brock\source\repos\social\statistics\server\statisticsTest.rest   | HTTP       |        -22 |         -7 |         -6 |        -35 |
+| c:\Users\brock\source\repos\social\users\server\.env                       | Properties |          2 |          0 |          0 |          2 |
+| c:\Users\brock\source\repos\social\users\server\README.md                  | Markdown   |         12 |          0 |          2 |         14 |
+| c:\Users\brock\source\repos\social\users\server\config\db.config.js        | JavaScript |         15 |          0 |          3 |         18 |
+| c:\Users\brock\source\repos\social\users\server\middleware\auth.js         | JavaScript |          0 |          0 |          1 |          1 |
+| c:\Users\brock\source\repos\social\users\server\models\userModel.js        | JavaScript |         26 |          1 |          2 |         29 |
+| c:\Users\brock\source\repos\social\users\server\models\userValidator.js    | JavaScript |         18 |          2 |          4 |         24 |
+| c:\Users\brock\source\repos\social\users\server\package-lock.json          | JSON       |      5,296 |          0 |          1 |      5,297 |
+| c:\Users\brock\source\repos\social\users\server\package.json               | JSON       |         32 |          0 |          1 |         33 |
+| c:\Users\brock\source\repos\social\users\server\routes\user.deleteall.js   | JavaScript |          8 |          0 |          2 |         10 |
+| c:\Users\brock\source\repos\social\users\server\routes\user.editUser.js    | JavaScript |         31 |          7 |          8 |         46 |
+| c:\Users\brock\source\repos\social\users\server\routes\user.getAllUsers.js | JavaScript |          8 |          0 |          2 |         10 |
+| c:\Users\brock\source\repos\social\users\server\routes\user.getuserById.js | JavaScript |         20 |          0 |          5 |         25 |
+| c:\Users\brock\source\repos\social\users\server\routes\user.login.js       | JavaScript |         28 |          3 |         11 |         42 |
+| c:\Users\brock\source\repos\social\users\server\routes\user.publicpage.js  | JavaScript |         29 |          4 |         10 |         43 |
+| c:\Users\brock\source\repos\social\users\server\routes\user.signup.js      | JavaScript |         29 |          4 |         10 |         43 |
+| c:\Users\brock\source\repos\social\users\server\server.js                  | JavaScript |         24 |          0 |          4 |         28 |
+| c:\Users\brock\source\repos\social\users\server\test.rest                  | HTTP       |         33 |          6 |         13 |         52 |
+| c:\Users\brock\source\repos\social\users\server\utilities\generateToken.js | JavaScript |          9 |          0 |          2 |         11 |
+| Total                                                                      |            |      1,234 |          0 |         15 |      1,249 |
++----------------------------------------------------------------------------+------------+------------+------------+------------+------------+

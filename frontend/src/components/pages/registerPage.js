@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -106,7 +106,6 @@ const Register = () => {
                   <input
                     class="form-check-input"
                     type="checkbox"
-                    role="switch"
                     id="flexSwitchCheckDefault"
                     onChange={() => {
                       setLight(!light);

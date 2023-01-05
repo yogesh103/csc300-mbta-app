@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import getUserInfo from "../../utilities/decodeJwt";
 
 
@@ -13,7 +13,6 @@ const PrivateUserProfile = () => {
   const [user, setUser] = useState({})
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [form, setValues] = useState({ content: "" });
   const navigate = useNavigate();
 
 
@@ -23,23 +22,14 @@ const PrivateUserProfile = () => {
     navigate("/");
   };
 
-  // handle Edit User Information button
-  const handleEditUser = (async) => {
-    navigate("/editUserPage");
-  };
-
   useEffect(() => {
     setUser(getUserInfo())
   }, []);
 
-  const handleChange = ({ currentTarget: input }) => {
-    setValues({ ...form, [input.id]: input.value });
-  };
-
 
   // 	<span><b>{<FollowerCount username = {username}/>}</b></span>&nbsp;
   // <span><b>{<FollowingCount username = {username}/>}</b></span>;
-  if (!user) return (<div><h3>You are not authorized to view this page, Please Login in <Link to={'/login'}><a href='#'>here</a></Link></h3></div>)
+  if (!user) return (<div><h4>Log in to view this page.</h4></div>)
   return (
     <div class="container">
       <div class="col-md-12 text-center">

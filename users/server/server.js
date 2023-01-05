@@ -1,13 +1,13 @@
 const express = require("express");
 const app = express();
 const cors = require('cors')
-const loginRoute = require('./routes/user.login')
-const getAllUsersRoute = require('./routes/user.getAllUsers')
-const registerRoute = require('./routes/user.signup')
-const getUserByIdRoute = require('./routes/user.getuserById')
+const loginRoute = require('./routes/userLogin')
+const getAllUsersRoute = require('./routes/userGetAllUsers')
+const registerRoute = require('./routes/userSignUp')
+const getUserByIdRoute = require('./routes/userGetUserById')
 const dbConnection = require('./config/db.config')
-const editUser = require('./routes/user.editUser')
-const deleteUser = require('./routes/user.deleteall')
+const editUser = require('./routes/userEditUser')
+const deleteUser = require('./routes/userDeleteAll')
 
 require('dotenv').config();
 const SERVER_PORT = 8081
@@ -23,5 +23,5 @@ app.use('/user', editUser)
 app.use('/user', deleteUser)
 
 app.listen(SERVER_PORT, (req, res) => {
-    console.log(`The user service is running on port ${SERVER_PORT}`);
+    console.log(`The backend service is running on port ${SERVER_PORT} and waiting for requests.`);
 })

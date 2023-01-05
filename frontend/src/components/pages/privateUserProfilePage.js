@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Image } from "react-bootstrap";
-import { Row, Col } from "react-bootstrap";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { UserContext } from "../../App";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import getUserInfo from "../../utilities/decodeJwt";
 
 

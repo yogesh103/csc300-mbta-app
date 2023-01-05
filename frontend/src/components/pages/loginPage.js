@@ -115,7 +115,6 @@ const Login = () => {
                   <input
                     class="form-check-input"
                     type="checkbox"
-                    role="switch"
                     id="flexSwitchCheckDefault"
                     onChange={() => { setLight(!light) }}
                   />

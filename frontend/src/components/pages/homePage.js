@@ -15,7 +15,8 @@ const HomePage = () => {
     }, [])
 
 
-    if (!user) return (<div><h3>You are not authorized to view this page, Please Login in <Link to={'/login'}><a href='#'>here</a></Link></h3></div>)
+    if (!user) return (
+        <div><h3>Log in to view this page.</h3></div>)
     const { id, email, username, password } = user
     return (
         <>

@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import getUserInfo from "../../utilities/decodeJwt";
 
 const PRIMARY_COLOR = "#cc5c99";
 const SECONDARY_COLOR = "#0c0c1f";
@@ -45,7 +44,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data: res } = await axios.post(url, data);
+      const { data } = await axios.post(url, data);
       // const {accessToken} = res
       //store token in localStorage
       navigate("/login");

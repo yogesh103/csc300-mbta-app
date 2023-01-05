@@ -4,8 +4,6 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import ReactNavbar from 'react-bootstrap/Navbar';
 
-// We import NavLink to utilize the react router.
-import { NavLink } from "react-router-dom";
 
 // Here, we display our Navbar
 export default function Navbar() {

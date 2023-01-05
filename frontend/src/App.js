@@ -6,12 +6,12 @@ VIKY'S COMMENT IS HERE
 */
 // We import all the components we need in our app
 import Navbar from "./components/navbar";
-import LandingPage from "./components/landingPage";
-import HomePage from "./components/homePage";
-import Login from "./components/loginPage";
-import Signup from "./components/registerPage";
-import PrivateUserProfile from "./components/userPages/privateUserProfilePage";
-import Test from "./components/testPage";
+import LandingPage from "./components/pages/landingPage";
+import HomePage from "./components/pages/homePage";
+import Login from "./components/pages/loginPage";
+import Signup from "./components/pages/registerPage";
+import PrivateUserProfile from "./components/pages/privateUserProfilePage";
+import Test from "./components/pages/testPage";
 import { createContext, useState, useEffect } from "react";
 import getUserInfo from "./utilities/decodeJwt";
 

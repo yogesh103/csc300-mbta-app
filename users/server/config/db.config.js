@@ -9,7 +9,7 @@ module.exports = () => {
     }
     try{
         mongoose.connect(process.env.DB_URL)
-        console.log("connected to the mongodb database")
+        console.log("The backend has connected to the MongoDB database.")
     } catch(error){
         console.log(`${error} could not connect`)
     }

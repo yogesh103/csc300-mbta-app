@@ -5,16 +5,16 @@ ENV NODE_ENV=dev
 WORKDIR /app
 
 # copy package files
-COPY /frontend/package-lock.json .
-COPY /frontend/package.json .
+COPY /backend/package-lock.json .
+COPY /backend/package.json .
 
 # copy all files
-COPY /frontend/. .
+COPY /backend/. .
 #Probably should add this to .dockerignore but i know some versions are icky with that
 RUN rm -rf node_modules
 # install dependencies
-RUN npm ci
+RUN npm install
 
-EXPOSE 3000
+EXPOSE 9000
 
-CMD [ "npm", "start" ]
+CMD [ "node", "server" ]

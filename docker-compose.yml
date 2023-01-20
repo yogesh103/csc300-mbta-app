@@ -7,7 +7,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=dev
+      - PORT=3000
     command: npm start
     volumes:
       - ./frontend:/app
@@ -16,13 +17,14 @@ services:
   backend:
     build:
       context: .
-      dockerfile: backend/server/Dockerfile
+      dockerfile: backend/Dockerfile
     ports:
       - "9000:9000"
     environment:
-      - DB_URL=mongodb://root:example@mongo:27017/
+      - SERVER_PORT=9000
+      - DB_URL=mongodb://mongo:27017/mydb
     volumes:
-      - ./backend/server:/app
+      - ./backend:/app
     depends_on:
       - mongo
   mongo:

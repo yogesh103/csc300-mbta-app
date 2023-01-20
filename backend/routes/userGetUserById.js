@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const z = require("zod");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const newUserModel = require("../models/userModel");
 

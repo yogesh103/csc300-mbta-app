@@ -10,7 +10,7 @@ const editUser = require('./routes/userEditUser')
 const deleteUser = require('./routes/userDeleteAll')
 
 require('dotenv').config();
-const SERVER_PORT = 8081
+const SERVER_PORT = 9000
 
 dbConnection()
 app.use(cors({origin: '*'}))

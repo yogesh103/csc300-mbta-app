@@ -1,8 +1,5 @@
 .DS_Store
 **/.DS_Store
-<<<<<<< HEAD
-/node_modules
+*node_modules
 *frontend/.env
-=======
-/node_modules
->>>>>>> 74909593471a80b67b0015070ab8e0b9ca3134a8
+*.env

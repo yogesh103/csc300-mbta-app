@@ -11,7 +11,7 @@ COPY package*.json ./
 COPY . .
 RUN rm -rf node_modules
 # install dependencies
-RUN npm ci
+RUN npm install
 
 EXPOSE 3000
 

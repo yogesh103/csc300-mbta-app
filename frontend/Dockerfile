@@ -1,19 +1,15 @@
 FROM node:16
 
 ENV NODE_ENV=dev
-
 WORKDIR /app
-
 # copy package files
-COPY /frontend/package-lock.json .
-COPY /frontend/package.json .
-
-# copy all files
-COPY /frontend/. .
-#Probably should add this to .dockerignore but i know some versions are icky with that
-RUN rm -rf node_modules
+# copy package files
+COPY ./package-lock.json .
+COPY ./package.json .
 # install dependencies
-RUN npm ci
+RUN npm install
+# copy all files
+COPY . .
 
 EXPOSE 3000
 

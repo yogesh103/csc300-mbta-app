@@ -2,30 +2,32 @@ version: '3'
 services:
   frontend:
     build:
-      context: .
-      dockerfile: frontend/Dockerfile
+      dockerfile: Dockerfile
+      context: ./frontend
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=dev
       - PORT=3000
     command: npm start
-    volumes:
-      - ./frontend:/app
     depends_on:
       - backend
   backend:
     build:
-      context: .
-      dockerfile: backend/Dockerfile
+      dockerfile: Dockerfile
+      context: ./backend
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
     ports:
       - "9000:9000"
     environment:
       - SERVER_PORT=9000
       - DB_URL=mongodb://mongo:27017/mydb
-    volumes:
-      - ./backend:/app
-    depends_on:
+  depends_on:
       - mongo
   mongo:
     image: mongo

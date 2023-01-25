@@ -3,6 +3,7 @@ FROM node:16
 ENV NODE_ENV=dev
 ARG DB_URL
 ARG SERVER_PORT
+ARG ACCESS_TOKEN_SECRET
 WORKDIR /app
 # copy package files
 # copy package files

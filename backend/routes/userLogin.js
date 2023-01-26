@@ -32,8 +32,7 @@ router.post('/login', async (req, res) => {
     return res
       .status(401)
       .send({ message: "email or password does not exists, try again" });
-
-  console.log('lets see if this works');    
+ 
   //create json web token if authenticated and send it back to client in header where it is stored in localStorage ( might not be best practice )
   const accessToken = generateAccessToken(user._id, user.email, user.username, user.password)
 

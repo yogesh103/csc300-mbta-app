@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MbtaAlerts from '../../components/MbtaAlerts';
 import axios from 'axios';
-const url = 'http://localhost:9000/alerts'
+const url = 'http://localhost:9000/mbta/alerts'
 
 const AlertsPage = () => {
   const [alerts, setAlerts] = useState([]);
@@ -20,9 +20,11 @@ const AlertsPage = () => {
   }, []);
 
   return (
-    <div>
+    <section className="vh-100">
+    <div className="container-fluid h-custom vh-100">
       <MbtaAlerts alerts={alerts} />
-    </div>
+      </div>
+    </section>
   );
 };
 

@@ -22,6 +22,7 @@ const App = () => {
     setUser(getUserInfo());
   }, []);
 
+  
   return (
     <>
       <Navbar />

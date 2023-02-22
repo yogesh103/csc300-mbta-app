@@ -9,6 +9,7 @@ const dbConnection = require('./config/db.config')
 const editUser = require('./routes/userEditUser')
 const deleteUser = require('./routes/userDeleteAll')
 const alerts = require('./routes/mbtaAlerts')
+const schedule = require('./routes/mbtaSchedule')
 
 require('dotenv').config();
 const SERVER_PORT = 9000
@@ -23,6 +24,7 @@ app.use('/user', getUserByIdRoute)
 app.use('/user', editUser)
 app.use('/user', deleteUser)
 app.use('/mbta', alerts)
+app.use('/mbta', schedule)
 
 app.listen(SERVER_PORT, (req, res) => {
     console.log(`The backend service is running on port ${SERVER_PORT} and waiting for requests.`);

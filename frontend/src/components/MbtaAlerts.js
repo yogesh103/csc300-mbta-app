@@ -35,7 +35,7 @@ const MbtaAlerts = ({ alerts }) => {
                                     <h3 key={effect}><Badge bg="secondary"> {effect.replace('_', ' ')}</Badge> </h3>
                                     {
                                         getAlertsByEffect(alerts, effect).map(alert => (
-                                            <Alert key={alert.id} variant={getAlertColorBySeverity(alert.attributes.severity)}>
+                                            <Alert key ={alert.id} variant={getAlertColorBySeverity(alert.attributes.severity)}>
                                                 <Alert.Heading>{alert.attributes.service_effect}</Alert.Heading>
                                                 <p>
                                                     {alert.attributes.header}

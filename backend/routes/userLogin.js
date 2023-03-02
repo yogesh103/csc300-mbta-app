@@ -6,7 +6,6 @@ const newUserModel = require('../models/userModel')
 const bcrypt = require('bcryptjs')
 const { generateAccessToken } = require('../utilities/generateToken')
 
-
 router.post('/login', async (req, res) => {
 
   const { error } = userLoginValidation(req.body);

@@ -9,6 +9,7 @@ services:
       - ./frontend:/app
     ports:
       - "3000:3000"
+      - "9224:9224"
     environment:
       - NODE_ENV=dev
       - PORT=3000
@@ -24,6 +25,7 @@ services:
       - ./backend:/app
     ports:
       - "9000:9000"
+      - "9229:9229"
     environment:
       - SERVER_PORT=9000
       - DB_URL=mongodb://root:example@mongo:27017/

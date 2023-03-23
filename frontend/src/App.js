@@ -11,11 +11,8 @@ import Signup from "./components/pages/registerPage";
 import PrivateUserProfile from "./components/pages/privateUserProfilePage";
 import { createContext, useState, useEffect } from "react";
 import getUserInfo from "./utilities/decodeJwt";
-<<<<<<< HEAD
 import TrainStations from "./components/pages/trainsNearby";
-=======
 import AboutUs from "./components/pages/about";
->>>>>>> 9c7e702638d4a60fa6b3d65c7c8fc739cfbdb2ea
 
 export const UserContext = createContext();
 //test change

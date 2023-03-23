@@ -5,25 +5,25 @@
             "type": "node",
             "request": "attach",
             "name": "Attach to Backend",
-            "address": "localhost",
+            "address": "localhost:9000",
             "port": 9229,
             "localRoot": "${workspaceFolder}/backend",
             "remoteRoot": "/app/backend",
-            "protocol": "inspector",
             "skipFiles": [
                 "<node_internals>/**"
             ]
         },
         {
-            "type": "chrome",
+            "type": "node",
             "request": "attach",
             "name": "Attach to Frontend",
-            "port": 9222,
-            "webRoot": "${workspaceFolder}/frontend",
-            "url": "http://localhost:3000",
-            "sourceMapPathOverrides": {
-                "webpack:///./src/*": "${webRoot}/*"
-            }
-        }
+            "address": "localhost:3000",
+            "port": 9224,
+            "localRoot": "${workspaceFolder}/frontend",
+            "remoteRoot": "/app/frontend",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
     ]
 }

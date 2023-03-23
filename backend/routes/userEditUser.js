@@ -8,6 +8,8 @@ const { generateAccessToken } = require('../utilities/generateToken');
 
 router.post('/editUser', async (req, res) =>
 {
+
+    
     // validate new user information
     const { error } = newUserValidation(req.body);
     if (error) return res.status(400).send({ message: error.errors[0].message });
@@ -40,6 +42,7 @@ router.post('/editUser', async (req, res) =>
         res.header('Authorization', accessToken).send({ accessToken: accessToken })
     }
     });
+    // this is for testing
 
 })
 

@@ -29,6 +29,7 @@ export default function Navbar() {
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="/privateUserProfile">Profile</Nav.Link>
         <Nav.Link href="/trainsNearby">Trains Nearby</Nav.Link>
+        <Nav.Link href="/aboutus">Aboutus</Nav.Link>
       </Nav>
       </Row>
     </Container>

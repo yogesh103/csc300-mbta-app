@@ -1,11 +1,10 @@
 {
   "name": "csc-300-mbta-app",
   "version": "0.0.1",
-  "description": "copy & paste ( in terminal ) :  - git clone https://github.com/Tochey/User_Service.git - cd server - npm install  - npm run server #### In another terminal tab - cd client - npm install - npm start",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon server.js",
-    "start": "nodemon server.js"
+    "server": "nodemon --inspect server.js",
+    "start": "nodemon --inspect server.js"
   },
   "repository": {
     "type": "git",

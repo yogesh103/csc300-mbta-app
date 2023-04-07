@@ -14,6 +14,7 @@ import getUserInfo from "./utilities/decodeJwt";
 import TrainStations from "./components/pages/trainsNearby";
 import AboutUs from "./components/pages/about";
 
+
 export const UserContext = createContext();
 //test change
 //test again
@@ -36,7 +37,7 @@ const App = () => {
           <Route exact path="/signup" element={<Signup />} />
           <Route path="/privateUserProfile" element={<PrivateUserProfile />} />
           <Route path="/trainsNearby" element={<TrainStations />} />
-          <Route path="/aboutus" element={<AboutUs/>} />
+          <Route path="/aboutus" element={<Aboutus/>} />
         </Routes>
       </UserContext.Provider>
     </>
@@ -46,3 +47,7 @@ const App = () => {
 
 
 export default App
+
+
+
+

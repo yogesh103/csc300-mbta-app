@@ -18,11 +18,6 @@ const newUserSchema = new mongoose.Schema(
       type: String,
       min : 8
     },
-    favline: {
-      types:String,
-      required: true,
-      label: "favline",
-    },
     date: {
       type: Date,
       default: Date.now,

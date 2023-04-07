@@ -15,7 +15,7 @@ router.post('/editUser', async (req, res) =>
     if (error) return res.status(400).send({ message: error.errors[0].message });
 
     // store new user information
-    const {userId, username, email, password, favline} = req.body
+    const {userId, username, email, password} = req.body
 
     // check if username is available
     const user = await newUserModel.findOne({ username: username })
@@ -32,9 +32,7 @@ router.post('/editUser', async (req, res) =>
     newUserModel.findByIdAndUpdate(userId, {
         username : username, 
         email : email, 
-        password : hashPassword,
-        favline: favline,
-        favroute:  favroute,
+        password : hashPassword
     } ,function (err, user) {
     if (err){
         console.log(err);

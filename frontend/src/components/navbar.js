@@ -25,9 +25,8 @@ export default function Navbar() {
     <Container>
     <Row className="justify-content-md-center">
       <Nav className="me-auto">
-        <Nav.Link href="/">Start</Nav.Link>
-        <Nav.Link href="/home">Home</Nav.Link>
-        <Nav.Link href="/privateUserProfile">Profile</Nav.Link>
+        <Nav.Link href="/">Home</Nav.Link>
+        <Nav.Link href="/profile">Profile</Nav.Link>
         <Nav.Link href="/trainsNearby">Trains Nearby</Nav.Link>
         <Nav.Link href="/aboutus">Aboutus</Nav.Link>
       </Nav>

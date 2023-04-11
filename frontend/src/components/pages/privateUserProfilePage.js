@@ -3,10 +3,7 @@ import {
   Container,
   Row,
   Col,
-  Card,
-  Image,
-  ListGroup,
-  ListGroupItem,
+  Card
 } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";

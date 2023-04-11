@@ -55,7 +55,7 @@ const Login = () => {
       const { accessToken } = res;
       //store token in localStorage
       localStorage.setItem("accessToken", accessToken);
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       if (
         error.response &&
@@ -68,7 +68,7 @@ const Login = () => {
   };
 
   if(user) {
-    navigate('/home')
+    navigate('/profile')
     return
   }
 

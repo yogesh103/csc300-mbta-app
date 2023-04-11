@@ -1,6 +1,7 @@
 FROM node:16
 
 ENV NODE_ENV=dev
+ENV CHOKIDAR_USEPOLLING=true
 WORKDIR /app
 # copy package files
 # copy package files

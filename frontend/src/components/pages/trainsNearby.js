@@ -62,19 +62,19 @@ useEffect(() => {
         axios.get(`https://api-v3.mbta.com/routes/${routeId}?api_key=7a7e1f522aab4d40a5adb24bf979a5a7`)
       );
       const routeResponses = await Promise.all(routeRequests);
-      console.log(routeResponses);
       const routesById = routeResponses.reduce((accumulator, response) => {
         const route = response.data.data;
         accumulator[route.id] = route;
         return accumulator;
       }, {});
 
-      console.log(routesById);
       // Combine the station, prediction, and route data
       const stationsWithPredictionsAndRoutes = stations.map((station) => {
         const predictions = predictionsByStationId[station.id] || [];
         const predictionsWithRoutes = predictions.map((prediction) => ({
           ...prediction,
+          timeInMinutes: Math.floor(
+            (new Date(prediction.attributes.arrival_time ?? prediction.attributes.departure_time) - Date.now()) / (1000 * 60)),
           route: routesById[prediction.relationships.route.data.id],
         }));
         return {
@@ -85,6 +85,7 @@ useEffect(() => {
   
       setTimeout(() => {
         setStations(stationsWithPredictionsAndRoutes);
+        console.log(stationsWithPredictionsAndRoutes);
         setLoading(false);
       }, 500);
     } catch (error) {
@@ -102,26 +103,22 @@ useEffect(() => {
   }
 
   return (
-    <div>
-      <div className="container">
+    <div className="container">
       <h1>Trains Near You</h1>
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {stations.map((station) => (
             station.predictions.map((prediction) => (
-              <div key={station.id + prediction.id} className="col">
-                <TrainCard
-                  key={prediction.id}
-                  name={prediction.route.attributes.long_name}
-                  timeInMinutes={Math.floor((new Date(prediction.attributes.arrival_time ?? prediction.attributes.departure_time ) - Date.now()) / (1000 * 60))}
-                  direction={`Towards ${prediction.route.attributes.direction_destinations[prediction.attributes.direction_id]}`}
-                  stopName={station.attributes.name}
-                  backgroundColor={prediction.route.attributes.color}
-                />
-              </div>
+              <TrainCard
+                key={prediction.id}
+                name={prediction.route.attributes.long_name}
+                timeInMinutes= {prediction.timeInMinutes}
+                direction={`Towards ${prediction.route.attributes.direction_destinations[prediction.attributes.direction_id]}`}
+                stopName={station.attributes.name}
+                backgroundColor={prediction.route.attributes.color}
+              />
             ))
         ))}
       </div>
-    </div>
     </div>
   );
 };

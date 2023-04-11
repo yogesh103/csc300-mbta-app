@@ -1,13 +1,16 @@
-import React, {} from 'react'
-import Card from 'react-bootstrap/Card';
+import React, { useState, useEffect } from "react";import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Lottie from 'lottie-react';
 import train from '../lottie/train.json';
+import getUserInfo from "../../utilities/decodeJwt";
 
 const Landingpage = () => {
-    
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    setUser(getUserInfo());
+  }, []);
+
     return (
       <Container>
         <Row className="justify-content-md-center">
@@ -17,8 +20,20 @@ const Landingpage = () => {
           <Card.Title>MBTA Alerts App </Card.Title>
           <Card.Text>
           </Card.Text>
-          <Card.Link href="/signup">Sign Up</Card.Link>
-          <Card.Link href="/login">Login</Card.Link>
+          { 
+              !user ? (
+                <>
+                  <Card.Link href="/signup">Sign Up</Card.Link>
+                  <Card.Link href="/login">Login</Card.Link>
+                </>
+              ) : (
+                <>
+                  <Card.Title>Welcome {user.username}!! </Card.Title>
+                  <Card.Link href="/profile">Profile</Card.Link>
+                  <Card.Link href="/trainsNearby">Trains Nearby</Card.Link>
+                </>
+              )
+            }
         </Card.Body>
       </Card>
       </Row>

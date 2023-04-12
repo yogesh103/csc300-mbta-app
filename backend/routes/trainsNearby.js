@@ -4,7 +4,7 @@ const distanceMatrixService = require('../services/distanceMatrix');
 
 const router = express.Router();
 
-router.get('/train-stations', async (req, res) => {
+router.get('/nearby', async (req, res) => {
   const { latitude, longitude } = req.query;
   const API_KEY = process.env.MBTA_API_KEY;
 
@@ -79,3 +79,5 @@ router.get('/train-stations', async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
+
+module.exports = router;

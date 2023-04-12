@@ -5,14 +5,17 @@ services:
       dockerfile: Dockerfile
       context: ./frontend
     volumes:
-      - /app/node_modules
+      - ./frontend/node_modules:/app/node_modules
       - ./frontend:/app
     ports:
       - "3000:3000"
       - "9224:9224"
     environment:
-      - NODE_ENV=dev
+      - NODE_ENV=development
       - PORT=3000
+      - WDS_SOCKET_HOST=127.0.0.1 
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true 
     command: npm start
     depends_on:
       - backend
@@ -21,15 +24,19 @@ services:
       dockerfile: Dockerfile
       context: ./backend
     volumes:
-      - /app/node_modules
       - ./backend:/app
+      - ./backend/node_modules:/app/node_modules
     ports:
       - "9000:9000"
       - "9229:9229"
     environment:
       - SERVER_PORT=9000
+      - NODE_ENV=development
       - DB_URL=mongodb://root:example@mongo:27017/
       - ACCESS_TOKEN_SECRET=xb3tim8rnIdoMMJfGNaqMxHX6zyWGBrR
+      - WDS_SOCKET_HOST=127.0.0.1 
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true 
     depends_on:
       - mongo
   mongo:

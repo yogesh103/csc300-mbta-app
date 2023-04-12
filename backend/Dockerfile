@@ -7,8 +7,6 @@ ARG MBTA_API_KEY
 ARG GOOGLE_MAPS_API_KEY
 ARG ACCESS_TOKEN_SECRET
 WORKDIR /app
-# copy package files
-# copy package files
 COPY ./package.json .
 # install dependencies
 RUN npm install
@@ -17,4 +15,5 @@ COPY . .
 
 EXPOSE 9000
 
-CMD [ "node", "server" ]
+# Start the app with nodemon
+CMD ["npm", "run", "server"]

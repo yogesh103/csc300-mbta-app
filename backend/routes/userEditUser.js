@@ -35,6 +35,7 @@ router.post('/editUser', async (req, res) =>
         password : hashPassword
     } ,function (err, user) {
     if (err){
+       
         console.log(err);
     } else {
         // create and send new access token to local storage

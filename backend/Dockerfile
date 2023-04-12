@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 9000
 
-CMD [ "node", "server" ]
+CMD [ "npm", "run" "server" ]

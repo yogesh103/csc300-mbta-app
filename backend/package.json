@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon --watch --inspect server.js",
-    "start": "nodemon --watch --inspect server.js"
+    "server": "nodemon -L --watch --inspect server.js",
+    "start": "nodemon -L --watch --inspect server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

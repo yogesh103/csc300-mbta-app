@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8081/user/getAll
+GET http://localhost:9000/user/getAll
 Content-Type: application/json
 
 ###

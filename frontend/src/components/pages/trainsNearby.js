@@ -4,7 +4,7 @@ import Loading from '../atomic/loading';
 import TrainCard from '../atomic/trainCard';
 
 const TrainsNearby = () => {
- const [location, setLocation] = useState(null);
+const [location, setLocation] = useState(null);
 const [stations, setStations] = useState([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(null);
@@ -26,14 +26,14 @@ useEffect(() => {
   fetchLocation();
   const intervalId = setInterval(() => {
     fetchLocation();
-  }, 1 * 60 * 1000); // Fetch data every 5 minutes
+  }, 1 * 60 * 1000); // Fetch data every 1 minute
   return () => clearInterval(intervalId);
 }, []);
 
   const getTrainStations = async ({ latitude, longitude }) => {
     try {
       const response = await axios.get(
-        `https://api-v3.mbta.com/stops?api_key=7a7e1f522aab4d40a5adb24bf979a5a7&filter[latitude]=${latitude}&filter[longitude]=${longitude}&filter[radius]=0.1&filter[route_type]=0,2`
+        `https://api-v3.mbta.com/stops?api_key=7a7e1f522aab4d40a5adb24bf979a5a7&filter[latitude]=${latitude}&filter[longitude]=${longitude}&filter[radius]=0.08&filter[route_type]=0,2`
       );
       const stations = response.data.data;
   
@@ -62,6 +62,7 @@ useEffect(() => {
         axios.get(`https://api-v3.mbta.com/routes/${routeId}?api_key=7a7e1f522aab4d40a5adb24bf979a5a7`)
       );
       const routeResponses = await Promise.all(routeRequests);
+      console.log(routeResponses);
       const routesById = routeResponses.reduce((accumulator, response) => {
         const route = response.data.data;
         accumulator[route.id] = route;
@@ -102,7 +103,8 @@ useEffect(() => {
 
   return (
     <div>
-      <h1>Trains Nearby</h1>
+      <div className="container">
+      <h1>Trains Near You</h1>
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {stations.map((station) => (
             station.predictions.map((prediction) => (
@@ -119,6 +121,7 @@ useEffect(() => {
             ))
         ))}
       </div>
+    </div>
     </div>
   );
 };

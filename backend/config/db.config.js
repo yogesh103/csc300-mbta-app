@@ -6,6 +6,7 @@ module.exports = () => {
     const databaseParams = {
         useNewUrlParser: true,
         useUnifiedTopology: true
+        
     }
     try{
         console.log("this is the env in the proc" , process.env)

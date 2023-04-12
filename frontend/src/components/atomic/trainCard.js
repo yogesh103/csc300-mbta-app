@@ -22,10 +22,10 @@ function TrainCard(props) {
               <i className="bi bi-geo-alt-fill me-2"></i> {stopName}
             </div>
             <div>
-              <i className="bi bi-clock-fill me-2"></i> {timeInMinutes} min
+              <i className="bi bi-clock-fill me-2"></i> {timeInMinutes < 4 ? 'Boarding Now' : timeInMinutes + ' min'} 
             </div>
           </div>
-        </Card.Body>
+        </Card.Body> 
       </Card>
     </div>
   );

@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon -L --watch * --exec 'node --inspect=0.0.0.0:9229 server.js'",
-    "start": "nodemon -L --watch * --exec 'node --inspect=0.0.0.0:9229 server.js'"
+    "server": "nodemon --watch * --exec 'node --inspect=0.0.0.0:9229 server.js'",
+    "start": "nodemon --watch * --exec 'node --inspect=0.0.0.0:9229 server.js'"
   },
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.3.28",

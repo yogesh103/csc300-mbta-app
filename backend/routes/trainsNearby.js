@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const distanceMatrixService = require('./services/distanceMatrix');
+const distanceMatrixService = require('../services/distanceMatrix');
 
 const router = express.Router();
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const distanceMatrixService = require('./services/distanceMatrix');
 
 const router = express.Router();
 
@@ -60,7 +61,20 @@ router.get('/train-stations', async (req, res) => {
       };
     });
 
-    res.send(stationsWithPredictionsAndRoutes);
+    // Get driving and walking times for each station
+    const origins = stationsWithPredictionsAndRoutes.map((station) => ({ lat: station.attributes.latitude, lng: station.attributes.longitude }));
+    const destinations = origins.slice(1).concat(origins[0]); // Make a circular route
+    const drivingTimes = await distanceMatrixService.getDrivingTimes(origins, destinations);
+    const walkingTimes = await distanceMatrixService.getWalkingTimes(origins, destinations);
+
+    // Add driving and walking times to each station
+    const stationsWithTimes = stationsWithPredictionsAndRoutes.map((station, index) => ({
+      ...station,
+      drivingTimeInMinutes: drivingTimes[index],
+      walkingTimeInMinutes: walkingTimes[index],
+    }));
+
+    res.send(stationsWithTimes);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

@@ -7,10 +7,12 @@
     "start": "nodemon -L --watch * --exec 'node --inspect=0.0.0.0:9229 server.js'"
   },
   "dependencies": {
+    "@googlemaps/google-maps-services-js": "^3.3.28",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "google-distance-matrix": "^1.1.1",
     "i": "^0.3.7",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5",

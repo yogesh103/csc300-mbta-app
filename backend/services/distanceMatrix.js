@@ -5,14 +5,16 @@ const client = new Client({});
 class DistanceMatrixService {
   static async getDrivingTime(origin, destination) {
     try {
+        console.log(origin, destination);
       const response = await client.distancematrix({
         params: {
-          origins: [origin],
-          destinations: [destination],
+          origins: origin,
+          destinations: destination,
           mode: 'driving',
           key: process.env.GOOGLE_MAPS_API_KEY,
         },
       });
+      console.log("it be the response" + response);
       return response.data.rows[0].elements[0].duration.text;
     } catch (error) {
       console.error(error);
@@ -24,12 +26,13 @@ class DistanceMatrixService {
     try {
       const response = await client.distancematrix({
         params: {
-          origins: [origin],
-          destinations: [destination],
+          origins: origin,
+          destinations: destination,
           mode: 'walking',
           key: process.env.GOOGLE_MAPS_API_KEY,
         },
       });
+      console.log(response);
       return response.data.rows[0].elements[0].duration.text;
     } catch (error) {
       console.error(error);

@@ -5,25 +5,25 @@
             "type": "node",
             "request": "attach",
             "name": "Attach to Backend",
-            "address": "localhost:9000",
+            "address": "localhost",
             "port": 9229,
             "localRoot": "${workspaceFolder}/backend",
-            "remoteRoot": "/app/backend",
+            "remoteRoot": "/app",
             "skipFiles": [
                 "<node_internals>/**"
             ]
         },
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "Attach to Frontend",
-            "address": "localhost:3000",
-            "port": 9224,
-            "localRoot": "${workspaceFolder}/frontend",
-            "remoteRoot": "/app/frontend",
-            "skipFiles": [
-                "<node_internals>/**"
-            ]
-        },
+        // {
+        //     "type": "node",
+        //     "request": "attach",
+        //     "name": "Attach to Frontend",
+        //     "address": "localhost:3000",
+        //     "port": 9224,
+        //     "localRoot": "${workspaceFolder}/frontend",
+        //     "remoteRoot": "/app/frontend",
+        //     "skipFiles": [
+        //         "<node_internals>/**"
+        //     ]
+        // },
     ]
 }

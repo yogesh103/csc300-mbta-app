@@ -12,6 +12,7 @@ import { createContext, useState, useEffect } from "react";
 import getUserInfo from "./utilities/decodeJwt";
 import TrainStations from "./components/pages/trainsNearby";
 import AboutUs from "./components/pages/about";
+import MbtaAlerts from "./components/pages/mbtaAlerts";
 
 export const UserContext = createContext();
 //test change
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/profile" element={<PrivateUserProfile />} />
           <Route path="/trainsNearby" element={<TrainStations />} />
           <Route path="/aboutus" element={<AboutUs/>} />
+          <Route exact path="/mbtaAlerts" element = {<MbtaAlerts />} />
         </Routes>
       </UserContext.Provider>
     </>

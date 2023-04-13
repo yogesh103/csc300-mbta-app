@@ -29,6 +29,7 @@ export default function Navbar() {
         <Nav.Link href="/profile">Profile</Nav.Link>
         <Nav.Link href="/trainsNearby">Trains Nearby</Nav.Link>
         <Nav.Link href="/aboutus">Aboutus</Nav.Link>
+        <Nav.Link href="/mbtaAlerts">MBTA Alerts</Nav.Link>
       </Nav>
       </Row>
     </Container>

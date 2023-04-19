@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Stop = require('../models/userModel')
+const User = require('../models/userModel')
 
 router.post('/:userId/stops', async (req, res) => {
     const userId = req.params.userId;
@@ -19,7 +20,7 @@ router.post('/:userId/stops', async (req, res) => {
       await newStop.save();
   
       // Add the stop to the user's collection of stops
-      await User.findByIdAndUpdate(userId, { $push: { stops: newStop._id } });
+      await User.findByIdAndUpdate(userId, { $push: {favStops: newStop._id } });
   
       res.status(201).json(newStop);
     } catch (error) {

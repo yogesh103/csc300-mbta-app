@@ -8,6 +8,7 @@ const newUserSchema = new mongoose.Schema(
       required: true,
       label: "username",
     },
+    
     email: {
       type: String,
       required: true,
@@ -18,6 +19,10 @@ const newUserSchema = new mongoose.Schema(
       type: String,
       min : 8
     },
+    favStops: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Stop'
+    }],
     date: {
       type: Date,
       default: Date.now,

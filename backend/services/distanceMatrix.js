@@ -1,11 +1,15 @@
-const RedisService = require('./redisService');
 const { Client } = require('@googlemaps/google-maps-services-js');
 const client = new Client({});
+const Redis = require("ioredis");
+
+// Create a Redis instance.
+// By default, it will connect to localhost:6379.
+// We are going to cover how to specify connection options soon.
+const redis = new Redis();
 
 class DistanceMatrixService {
   static async getDrivingTime(origin, destination) {
     try {
-      const redis = new RedisService();
       const cacheKey = `driving_time_${origin}_${destination}`;
       
       // Check if the result is already cached
@@ -25,7 +29,7 @@ class DistanceMatrixService {
         },
       });
 
-    //   // Cache the result for 2 hours
+    // //   // Cache the result for 2 hours
       const result = response.data.rows[0].elements[0].duration.text;
       await redis.set(cacheKey, JSON.stringify(result));
       
@@ -39,10 +43,10 @@ class DistanceMatrixService {
 
   static async getWalkingTime(origin, destination) {
     try {
-      const redis = new RedisService();
+    //   const redis = new RedisService();
       const cacheKey = `walking_time_${origin}_${destination}`;
       
-    //   // Check if the result is already cached
+      // Check if the result is already cached
       const cachedResult = await redis.get(cacheKey);
       if (cachedResult) {
         console.log('Returning cached result for walking time');

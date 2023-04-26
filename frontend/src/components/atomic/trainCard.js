@@ -22,7 +22,9 @@ function TrainCard(props) {
         className="rounded shadow"
       >
         <Card.Body>
+          <Row>
           <Card.Title>{name}</Card.Title>
+          </Row>
           <Card.Subtitle className="mb-2 text-white">{direction}</Card.Subtitle>
           <div className="d-flex justify-content-between">
             <div>

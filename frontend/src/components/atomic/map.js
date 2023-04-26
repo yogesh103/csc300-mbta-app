@@ -1,47 +1,58 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { RoutingMachine } from 'react-leaflet-routing-machine';
+import { RoutingMachine } from 'leaflet-routing-machine';
 
-const Map = ({ lat, lng, zoom, destinations }) => {
-  const [position, setPosition] = useState([lat, lng]);
+function Map({ lat, lng, zoom, destinations }) {
+    const [position, setPosition] = useState([lat, lng]);
+    const mapRef = useRef(null);
 
-  const handleLocationFound = (e) => {
-    setPosition(e.latlng);
-  };
+    const handleLocationFound = (e) => {
+        setPosition(e.latlng);
+    };
 
-  return (
-    <MapContainer
-      center={position}
-      zoom={zoom}
-      style={{ height: '400px' }}
-      onLocationfound={handleLocationFound}
-      whenReady={(map) => {
-        map.locate();
-      }}
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+    useEffect(() => {
+        const map = mapRef.current;
+        if (map) {
+            map.locate();
+        }
+    }, [mapRef.current]);
 
-      <RoutingMachine
-        waypoints={[
-          position,
-          ...destinations.map((destination) => [destination.lat, destination.lng]),
-        ]}
-        routeWhileDragging={false}
-        routerProps={{ profile: 'mapbox/driving' }}
-      />
+    return (
+        <MapContainer
+            center={position}
+            zoom={zoom}
+            style={{ height: '400px' }}
+            ref={mapRef}
+            whenReady={() => {
+                const map = mapRef.current;
+                if (map) {
+                    map.locate();
+                }
+            }}
+            onLocationfound={handleLocationFound}
+        >
+            {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */}
 
-      {destinations.map((destination, index) => (
-        <Marker key={index} position={[destination.lat, destination.lng]}>
-          <Popup>
-            <div>
-              <h2>{destination.name}</h2>
-              <p>{destination.description}</p>
-            </div>
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
-  );
-};
+            {/* <RoutingMachine
+                waypoints={[
+                    position,
+                    ...destinations.map((destination) => [destination.lat, destination.lng]),
+                ]}
+                routeWhileDragging={false}
+                routerProps={{ profile: 'mapbox/driving' }} /> */}
+
+            {destinations.map((destination, index) => (
+                <Marker key={index} position={[destination.lat, destination.lng]}>
+                    <Popup>
+                        <div>
+                            <h2>{destination.name}</h2>
+                            <p>{destination.description}</p>
+                        </div>
+                    </Popup>
+                </Marker>
+            ))}
+        </MapContainer>
+    );
+}
 
 export default Map;

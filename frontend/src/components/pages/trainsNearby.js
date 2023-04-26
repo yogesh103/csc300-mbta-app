@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Loading from '../atomic/loading';
 import TrainCard from '../atomic/trainCard';
+import Map from '../atomic/map';
 
 const TrainsNearby = () => {
 const [location, setLocation] = useState(null);
 const [stations, setStations] = useState([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(null);
+const [destinations, setDestinations] = useState([]);
 
 const fetchLocation = async () => {
   try {
@@ -37,6 +39,15 @@ useEffect(() => {
       setTimeout(() => {
         setStations(stationsWithPredictionsAndRoutes.data);
         console.log(stationsWithPredictionsAndRoutes);
+        const destinationsRaw = stationsWithPredictionsAndRoutes.data.map((station) => {
+          return {
+            lat: station.attributes.latitude,
+            lng: station.attributes.longitude,
+            name: station.attributes.name,
+            description: station.attributes.address,
+          };
+        });
+        setDestinations(destinationsRaw);
         setLoading(false);
       }, 500);
     } catch (error) {
@@ -72,6 +83,10 @@ useEffect(() => {
             ))
         ))}
       </div>
+      {/* <div className="row row-cols-1 row-cols-md-3 g-4">
+        <Map lat={location.latitude} lng ={location.longitude} zoom={2} destinations={destinations}></Map>
+        </div> */}
+      
     </div>
   );
 };

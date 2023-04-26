@@ -1,37 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { RoutingMachine } from 'leaflet-routing-machine';
+import { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
+// import { RoutingMachine } from 'leaflet-routing-machine';
 
 function Map({ lat, lng, zoom, destinations }) {
-    const [position, setPosition] = useState([lat, lng]);
-    const mapRef = useRef(null);
-
-    const handleLocationFound = (e) => {
-        setPosition(e.latlng);
-    };
-
-    useEffect(() => {
-        const map = mapRef.current;
-        if (map) {
-            map.locate();
-        }
-    }, [mapRef.current]);
-
+    const [position] = useState([lat, lng]);
     return (
         <MapContainer
             center={position}
             zoom={zoom}
             style={{ height: '400px' }}
-            ref={mapRef}
-            whenReady={() => {
-                const map = mapRef.current;
-                if (map) {
-                    map.locate();
-                }
-            }}
-            onLocationfound={handleLocationFound}
+            zoomControl={true}
         >
-            {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */}
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
             {/* <RoutingMachine
                 waypoints={[
@@ -41,8 +21,8 @@ function Map({ lat, lng, zoom, destinations }) {
                 routeWhileDragging={false}
                 routerProps={{ profile: 'mapbox/driving' }} /> */}
 
-            {destinations.map((destination, index) => (
-                <Marker key={index} position={[destination.lat, destination.lng]}>
+            {/* {destinations.map((destination) => (
+                <Marker key={destination.id} position={[destination.lat, destination.lng]}>
                     <Popup>
                         <div>
                             <h2>{destination.name}</h2>
@@ -50,7 +30,8 @@ function Map({ lat, lng, zoom, destinations }) {
                         </div>
                     </Popup>
                 </Marker>
-            ))}
+            ))} */}
+            <ZoomControl position="bottomright" />
         </MapContainer>
     );
 }

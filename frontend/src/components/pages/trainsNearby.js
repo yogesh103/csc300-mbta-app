@@ -84,8 +84,8 @@ useEffect(() => {
         ))}
       </div>
       {/* <div className="row row-cols-1 row-cols-md-3 g-4">
-        <Map lat={location.latitude} lng ={location.longitude} zoom={2} destinations={destinations}></Map>
-        </div> */}
+        <Map lat={location.latitude} lng ={location.longitude} zoom={14} destinations={destinations}></Map>
+      </div> */}
       
     </div>
   );

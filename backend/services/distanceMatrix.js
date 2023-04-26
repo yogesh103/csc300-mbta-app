@@ -5,14 +5,24 @@ const Redis = require("ioredis");
 // Create a Redis instance.
 // By default, it will connect to localhost:6379.
 // We are going to cover how to specify connection options soon.
-const redis = new Redis();
+const redis = new Redis({
+  port: 6379, // Redis port
+  host: process.env.REDIS_HOST, //
+});
 
 class DistanceMatrixService {
   static async getDrivingTime(origin, destination) {
     try {
-      const cacheKey = `driving_time_${origin}_${destination}`;
+      const [originLatLng] = origin;
+      const [destinationLatLng] = destination;
+    
+      const { lat: originLat, lng: originLng } = originLatLng;
+      const { lat: destinationLat, lng: destinationLng } = destinationLatLng;
+
+      const cacheKey = `driving_time_${[originLat]}_${[originLng]}_${[destinationLat]}_${[destinationLng]}`;
       
       // Check if the result is already cached
+      console.log(cacheKey)
       const cachedResult = await redis.get(cacheKey);
       if (cachedResult) {
         console.log('Returning cached result for driving time');
@@ -29,10 +39,8 @@ class DistanceMatrixService {
         },
       });
 
-    // //   // Cache the result for 2 hours
       const result = response.data.rows[0].elements[0].duration.text;
-      await redis.set(cacheKey, JSON.stringify(result));
-      
+      await redis.set(cacheKey, JSON.stringify(result), "EX", 7200);
       console.log("Returning new result for driving time");
       return result;
     } catch (error) {
@@ -43,9 +51,14 @@ class DistanceMatrixService {
 
   static async getWalkingTime(origin, destination) {
     try {
-    //   const redis = new RedisService();
-      const cacheKey = `walking_time_${origin}_${destination}`;
-      
+      const [originLatLng] = origin;
+      const [destinationLatLng] = destination;
+    
+      const { lat: originLat, lng: originLng } = originLatLng;
+      const { lat: destinationLat, lng: destinationLng } = destinationLatLng;
+
+      const cacheKey = `walking_time_${[originLat]}_${[originLng]}_${[destinationLat]}_${[destinationLng]}`;
+
       // Check if the result is already cached
       const cachedResult = await redis.get(cacheKey);
       if (cachedResult) {
@@ -63,9 +76,9 @@ class DistanceMatrixService {
         },
       });
 
-      // Cache the result for 2 hours
+    
       const result = response.data.rows[0].elements[0].duration.text;
-      await redis.set(cacheKey, JSON.stringify(result));
+      await redis.set(cacheKey, JSON.stringify(result), "EX", 7200);
       
       console.log("Returning new result for walking time");
       return result;

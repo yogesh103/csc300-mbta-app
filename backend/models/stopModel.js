@@ -3,11 +3,19 @@ const mongoose = require('mongoose');
 const stopSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: false
+  },
+  user_id: {
+    type: String,
+    required: false
+  },
+  direction_name: {
+    type: String,
+    required: false
   },
   location: {
     type: String,
-    required: true
+    required: false
   },
   longitude: {
     type: Number,

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Loading from '../atomic/loading';
 import TrainCard from '../atomic/trainCard';
+import getUserInfo  from '../../utilities/decodeJwt';
 
 const TrainsNearby = () => {
 const [location, setLocation] = useState(null);
@@ -10,6 +11,8 @@ const [stations, setStations] = useState([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(null);
 const [destinations, setDestinations] = useState([]);
+const [favoriteStops, setFavoriteStops] = useState([]);
+const [user, setUser] = useState(getUserInfo());
 
 const fetchLocation = async () => {
   try {
@@ -24,8 +27,16 @@ const fetchLocation = async () => {
     setLoading(false);
   }
 };
+
+const getFavoriteStops = async (userId) => {
+  const data = await axios.get(`http://localhost:9000/user/${userId}/favStops`);
+  setFavoriteStops(data.data);
+  console.log(data.data);
+};
+
 useEffect(() => {
   fetchLocation();
+  getFavoriteStops(user.id);
   const intervalId = setInterval(() => {
     fetchLocation();
   }, 1 * 60 * 1000); // Fetch data every 1 minute
@@ -72,6 +83,8 @@ useEffect(() => {
         {stations.map((station) => (
             station.predictions.map((prediction) => (
               <TrainCard
+                userId={user.id}
+                stopId={station.id}
                 key={prediction.id}
                 name={prediction.route.attributes.long_name}
                 timeInMinutes= {prediction.timeInMinutes}
@@ -80,6 +93,9 @@ useEffect(() => {
                 drivingTimeInMinutes={station.drivingTimeInMinutes}
                 walkingTimeInMinutes={station.walkingTimeInMinutes}
                 backgroundColor={prediction.route.attributes.color}
+                longitude={station.attributes.longitude}
+                latitude={station.attributes.latitude}
+                isFavorited={favoriteStops.some((stop) => stop.stop_id === station.id && stop.direction_name === `Towards ${prediction.route.attributes.direction_destinations[prediction.attributes.direction_id]}`)}
               />
             ))
         ))}

@@ -6,13 +6,13 @@ const bcrypt = require("bcryptjs");
 const newUserModel = require("../models/userModel");
 
 router.get("/getUserById", async (req, res) => {
-  var { userId } = req.body;
+  const { userId } = req.body;
 
   newUserModel.findById(userId, function (err, user) {
     if (err) {
       console.log(err);
     }
-    if (user==null) {
+    if (user===null) {
       res.status(404).send("userId does not exist.");
     } 
     else {

@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Row } from "react-bootstrap";
+import { VscHeart } from "react-icons/vsc";
+import { VscHeartFilled } from "react-icons/vsc";
+import axios from "axios";
 
 function TrainCard(props) {
   const {
@@ -10,10 +13,38 @@ function TrainCard(props) {
     backgroundColor,
     drivingTimeInMinutes,
     walkingTimeInMinutes,
+    stopId,
+    userId,
+    isFavorited,
+    longitude,
+    latitude,
   } = props;
+
+  const [favorited, setFavorited] = useState(isFavorited);
 
   const bg = `#${backgroundColor}`;
   if (timeInMinutes < 0) return null;
+
+  const toggleFavorite = async () => {
+    try {
+      const data = {
+        stop_name: stopName,
+        longitude: longitude,
+        latitude: latitude,
+        direction_name: direction,
+      }
+
+      if (!favorited) {
+        await axios.post(`http://localhost:9000/user/${userId}/favStops/${stopId}`, data);
+      } else {
+        await axios.delete(`http://localhost:9000/user/${userId}/favStops/${stopId}`, data);
+      }
+      setFavorited(!favorited);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div key={stopName + name + direction} className="col">
       <Card
@@ -22,14 +53,6 @@ function TrainCard(props) {
         className="rounded shadow"
       >
         <Card.Body>
-          <Row>
-            <Card.Title>{name}</Card.Title>
-            {/* <svg onClick={handleFavorite}>
-             */}
-            <svg>
-              <path d="M12 21.35L10.55 20.03C4.88 14.66 2 11.78 2 8.5C2 6.5 3.5 5 5.5 5C6.57 5 7.59 5.43 8.5 6.23C9.41 5.43 10.43 5 11.5 5C13.5 5 15 6.5 15 8.5C15 11.78 12.12 14.66 6.45 20.03L5 21.35L3.65 20C2.2 18.55 2.2 16.55 3.65 15.1L4.4 14.35L12 6.75L19.6 14.35L20.35 15.1C21.8 16.55 21.8 18.55 20.35 20L19 21.35L12 14.35L12 21.35Z" />
-            </svg>
-          </Row>
           <Card.Subtitle className="mb-2 text-white">{direction}</Card.Subtitle>
           <div className="d-flex justify-content-between">
             <div>
@@ -74,6 +97,9 @@ function TrainCard(props) {
                   ></path>
                 </svg>{" "}
                 {walkingTimeInMinutes}
+              </div>
+              <div onClick={toggleFavorite}>
+                {favorited ? <VscHeartFilled /> : <VscHeart />}
               </div>
             </div>
           </Row>

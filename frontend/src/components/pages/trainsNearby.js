@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Loading from '../atomic/loading';
 import TrainCard from '../atomic/trainCard';
@@ -14,7 +14,7 @@ const [destinations, setDestinations] = useState([]);
 const [favoriteStops, setFavoriteStops] = useState([]);
 const [user, setUser] = useState(getUserInfo());
 
-const fetchLocation = async () => {
+const fetchLocation = useCallback(async () => {
   try {
     const position = await new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -26,12 +26,11 @@ const fetchLocation = async () => {
     setError(error.message);
     setLoading(false);
   }
-};
+}, []);
 
 const getFavoriteStops = async (userId) => {
   const data = await axios.get(`http://localhost:9000/user/${userId}/favStops`);
   setFavoriteStops(data.data);
-  console.log(data.data);
 };
 
 useEffect(() => {
@@ -41,7 +40,7 @@ useEffect(() => {
     fetchLocation();
   }, 1 * 60 * 1000); // Fetch data every 1 minute
   return () => clearInterval(intervalId);
-}, []);
+}, [fetchLocation, user.id]);
 
   const getTrainStations = async ({ latitude, longitude }) => {
     const url = 'http://localhost:9000/train/nearby'
@@ -75,7 +74,7 @@ useEffect(() => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
+  
   return (
     <div className="container">
       <h1>Trains Near You</h1>

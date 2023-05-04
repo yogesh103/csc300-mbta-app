@@ -1,0 +1,53 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Departure Board API",
+      "description": "Departure Board Api",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9000",
+        "description": "Local server"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Favorite Stops",
+        "description": "API for managing favorite stops"
+      }
+    ],
+    "paths": {},
+    "components": {
+      "schemas": {
+        "Stop": {
+          "type": "object",
+          "properties": {
+            "stop_id": {
+              "type": "string"
+            },
+            "user_id": {
+              "type": "string"
+            },
+            "longitude": {
+              "type": "number"
+            },
+            "latitude": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            },
+            "direction_name": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+  

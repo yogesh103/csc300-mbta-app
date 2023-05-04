@@ -6,6 +6,51 @@ const newUserModel = require('../models/userModel')
 const { newUserValidation } = require('../models/userValidator');
 const { generateAccessToken } = require('../utilities/generateToken');
 
+/**
+ * @swagger
+ * /user/editUser:
+ *   post:
+ *     summary: Edit an existing user
+ *     description: Edit an existing user's information.
+ *     tags:
+ *       - Users
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: string
+ *                 description: The user's unique ID.
+ *               username:
+ *                 type: string
+ *                 description: The user's new username.
+ *               email:
+ *                 type: string
+ *                 description: The user's new email address.
+ *               password:
+ *                 type: string
+ *                 description: The user's new password.
+ *     responses:
+ *       200:
+ *         description: The user has been successfully updated.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 accessToken:
+ *                   type: string
+ *                   description: The user's new access token.
+ *       400:
+ *         description: Bad request (e.g., validation error)
+ *       409:
+ *         description: Conflict (e.g., username already taken)
+ *       500:
+ *         description: An error occurred
+ */
 router.post('/editUser', async (req, res) =>
 {
     // validate new user information

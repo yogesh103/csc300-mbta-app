@@ -3,7 +3,43 @@ const axios = require('axios');
 const {getDrivingTime , getWalkingTime} = require('../services/distanceMatrix');
 
 const router = express.Router();
-
+/**
+ * @swagger
+ * /train/nearby:
+ *   get:
+ *     summary: Retrieve nearby stations with predictions
+ *     description: Get a list of nearby stations with their predictions, routes, driving, and walking times.
+ *     tags:
+ *       - Nearby Stations
+ *     parameters:
+ *       - in: query
+ *         name: latitude
+ *         schema:
+ *           type: number
+ *         required: true
+ *         description: Latitude of the user's location
+ *       - in: query
+ *         name: longitude
+ *         schema:
+ *           type: number
+ *         required: true
+ *         description: Longitude of the user's location
+ *     responses:
+ *       200:
+ *         description: A JSON array of nearby stations with predictions and times
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                     description: The station ID
+ *       500:
+ *         description: An error occurred
+ */
 router.get('/nearby', async (req, res) => {
   const { latitude, longitude } = req.query;
   const API_KEY = process.env.MBTA_API_KEY;

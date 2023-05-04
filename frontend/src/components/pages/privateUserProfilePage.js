@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Table } from "react-bootstrap";
+import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import getUserInfo from "../../utilities/decodeJwt";
+import MapComponent from "../atomic/mapComponent";
 
 const PrivateUserProfile = () => {
   const [show, setShow] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(getUserInfo());
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [favoriteStops, setFavoriteStops] = useState([]);
   const navigate = useNavigate();
 
   // handle logout button
@@ -23,8 +21,27 @@ const PrivateUserProfile = () => {
     navigate("/");
   };
 
+  const removeStop = async (stopId, direction) => {
+    try {
+      await axios.delete(
+        `http://localhost:9000/user/${user.id}/favStops/${stopId}?direction_name=${direction}`
+      );
+      setFavoriteStops(favoriteStops.filter((stop) => stop.stop_id !== stopId));
+    } catch (error) {
+      console.error("Error removing stop:", error);
+    }
+  };
+
+  const getFavoriteStops = async (userId) => {
+    const data = await axios.get(
+      `http://localhost:9000/user/${userId}/favStops`
+    );
+    setFavoriteStops(data.data);
+    console.log(favoriteStops);
+  };
+
   useEffect(() => {
-    setUser(getUserInfo());
+    getFavoriteStops(user.id);
   }, []);
 
   if (!user)
@@ -34,8 +51,7 @@ const PrivateUserProfile = () => {
       </div>
     );
   return (
-    <section style={{ backgroundColor: "#f4f5f7" }}>
-      <Container className="py-5 h-100">
+    <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
         <Row className="justify-content-center align-items-center h-100">
           <Col lg="6" className="mb-4 mb-lg-0">
             <Card className="mb-3" style={{ borderRadius: ".5rem" }}>
@@ -59,7 +75,7 @@ const PrivateUserProfile = () => {
                       text-anchor="middle"
                       dominant-baseline="middle"
                     >
-                      { user.username ? user.username[0].toUpperCase() : "Guest"}
+                      {user.username ? user.username[0].toUpperCase() : "Guest"}
                     </text>
                   </svg>
                 </Col>
@@ -78,35 +94,85 @@ const PrivateUserProfile = () => {
               </Row>
             </Card>
           </Col>
-        </Row>
 
-        <div class="col-md-12 text-center">
-          <>
-            <Button className="me-2" onClick={handleShow}>
-              Log Out
-            </Button>
-            <Modal
-              show={show}
-              onHide={handleClose}
-              backdrop="static"
-              keyboard={false}
-            >
-              <Modal.Header closeButton>
-                <Modal.Title>Log Out</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>Are you sure you want to Log Out?</Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Close
-                </Button>
-                <Button variant="primary" onClick={handleLogout}>
-                  Yes
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </>
-        </div>
-      </Container>
+          <Col>
+            <Card>
+              <Card.Header>
+                <h5>Favorite Stops</h5>
+              </Card.Header>
+              <Card.Body>
+                <Table responsive hover>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Direction</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {favoriteStops.map((stop) => (
+                      <tr key={stop._id}>
+                        <td>{stop.name}</td>
+                        <td>{stop.direction_name}</td>
+                        <td>
+                          <Button
+                            variant="danger"
+                            size="sm"
+                            onClick={() =>
+                              removeStop(stop.stop_id, stop.direction_name)
+                            }
+                          >
+                            Remove
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+          <Row className="mt-5">
+            <Col>
+              {favoriteStops.length !== 0 && (
+                <>
+                  <h5>Favorite Stops Map</h5>
+                  <div style={{ height: "400px", width: "100%" }}>
+                    <MapComponent favoriteStops={favoriteStops} />
+                  </div>
+                </>
+              )}
+            </Col>
+          </Row>
+        <Row>
+          <div class="col-md-12 text-center">
+            <>
+              <Button className="me-2" onClick={handleShow}>
+                Log Out
+              </Button>
+              <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Log Out</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to Log Out?</Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={handleLogout}>
+                    Yes
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </>
+          </div>
+          </Row>
     </section>
   );
 };

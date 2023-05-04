@@ -6,6 +6,44 @@ const newUserModel = require('../models/userModel')
 const bcrypt = require('bcryptjs')
 const { generateAccessToken } = require('../utilities/generateToken')
 
+/**
+ * @swagger
+ * /user/login:
+ *   post:
+ *     summary: Log in a user
+ *     description: Authenticate a user with their username and password.
+ *     tags:
+ *       - Users
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: The username
+ *               password:
+ *                 type: string
+ *                 description: The password
+ *     responses:
+ *       200:
+ *         description: User logged in successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 accessToken:
+ *                   type: string
+ *                   description: The access token for the authenticated user
+ *       400:
+ *         description: Invalid input data
+ *       401:
+ *         description: Incorrect username or password
+ */
+
 router.post('/login', async (req, res) => {
 
   const { error } = userLoginValidation(req.body);

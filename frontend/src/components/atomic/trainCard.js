@@ -27,17 +27,16 @@ function TrainCard(props) {
 
   const toggleFavorite = async () => {
     try {
-      const data = {
-        stop_name: stopName,
-        longitude: longitude,
-        latitude: latitude,
-        direction_name: direction,
-      }
-
       if (!favorited) {
+        const data = {
+          stop_name: stopName,
+          longitude: longitude,
+          latitude: latitude,
+          direction_name: direction,
+        }
         await axios.post(`http://localhost:9000/user/${userId}/favStops/${stopId}`, data);
       } else {
-        await axios.delete(`http://localhost:9000/user/${userId}/favStops/${stopId}`, data);
+        await axios.delete(`http://localhost:9000/user/${userId}/favStops/${stopId}?direction_name=${direction}`);
       }
       setFavorited(!favorited);
     } catch (err) {
